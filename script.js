@@ -12,47 +12,14 @@ listItems.forEach((e) => {
   });
 });
 
-const addTodoItem = (description) => {
-  var todoItem = {
-    desc: description,
+
+const task = (desc) => {
+  return {
+    description: desc,
     checked: false,
   };
-  //   console.log(todoItem);
-  todoItems.push(todoItem);
-  console.log(todoItems);
 };
 
-// const addTask = () => {
-//   if (inputBox.value === "") {
-//     alert("You should add a task!");
-//   } else {
-//     let li = document.createElement("li");
-//     li.innerHTML = inputBox.value;
-//     list.appendChild(li);
-//     addTodoItem(inputBox.value);
-
-//     let span = document.createElement("span");
-//     span.innerHTML = "\u00D7";
-//     li.appendChild(span);
-//   }
-//   inputBox.value = ""; // Clear the inputfield after adding and element;
-// };
-
-// list.addEventListener("click", (e) => {
-//   if (e.target.tagName === "LI") {
-//     e.target.classList.toggle("checked");
-//   } else if (e.target.tagName === "SPAN") {
-//     e.target.parentElement.remove();
-//   }
-// });
-
-// list.addEventListener("click", (e) => {
-//   if (e.target.tagName === "SPAN") {
-//     e.target.parentElement.remove();
-//   }
-// });
-
-// console.log(todoItems);
 
 var itemController = {
   add: () => {
@@ -62,7 +29,8 @@ var itemController = {
       let li = document.createElement("li");
       li.innerHTML = inputBox.value;
       list.appendChild(li);
-      addTodoItem(inputBox.value);
+      const todoTask = task(inputBox.value);
+      todoItems.push(todoTask);
 
       let span = document.createElement("span");
       span.innerHTML = "\u00D7";
@@ -75,7 +43,7 @@ var itemController = {
     if (e.target.tagName === "LI") {
       e.target.classList.toggle("checked");
       var clickLi = todoItems.find((todo) => {
-        return e.target.textContent.replace(/×/g, "") === todo.desc;
+        return e.target.textContent.replace(/×/g, "") === todo.description;
       });
       if (!clickLi.checked) {
         clickLi.checked = true;
@@ -92,12 +60,19 @@ var itemController = {
       e.target.parentElement.remove();
       var clickLi = todoItems.find((todo) => {
         return (
-          e.target.parentElement.textContent.replace(/×/g, "") === todo.desc
+          e.target.parentElement.textContent.replace(/×/g, "") ===
+          todo.description
         );
       });
       console.log("Is removed from the array", clickLi);
       todoItems.pop(clickLi);
-      console.log(todoItems);
+      console.log(this.tasks);
     }
   }),
+
+  retrive: () => {
+    console.log(todoItems);
+  },
 };
+
+itemController.retrive();
