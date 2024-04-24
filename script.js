@@ -12,7 +12,7 @@ listItems.forEach((e) => {
   });
 });
 
-
+//Factory function used
 const task = (desc) => {
   return {
     description: desc,
@@ -20,7 +20,7 @@ const task = (desc) => {
   };
 };
 
-
+//object to control the added tasks 
 var itemController = {
   add: () => {
     if (inputBox.value === "") {
