@@ -68,16 +68,25 @@ button{
 }
 
 
-ul li {
+/* .todo.list{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+} */
+
+.todo-list ul li {
     list-style: none;
     font-size:17px;
     padding: 12px 8px 12px 50px;
     user-select: none;
     cursor:pointer;
     position: relative;
+    border-radius: 30px;
+    
+    margin-bottom: 10px;
 }
 
-ul li::before{
+.todo-list ul li::before{
     content: '';
     width: 28px;
     height: 28px;
@@ -92,17 +101,31 @@ ul li::before{
 
 }
 
-ul li.checked {
+.todo-list ul li.checked {
     color:#555;
     text-decoration:line-through;
 
+
 }
 
-ul li.checked::before{
+.todo-list ul li.high{
+    background-color: rgba(201, 30, 30, 0.214);
+}
+
+.todo-list ul li.medium{
+    background-color: rgba(230, 100, 13, 0.329);
+}
+
+
+.todo-list ul li.low{
+    background-color: rgba(207, 216, 25, 0.329);
+}
+
+.todo-list ul li.checked::before{
     background-image: url(images/checked.png);
 }
 
-ul li span {
+.todo-list ul li span {
     position: absolute;
     right: 0;
     top: 5px;
@@ -116,6 +139,49 @@ ul li span {
 }
 
 
-ul li span:hover{
+.todo-list ul li span:hover{
     background-color: #edeef0;
 }
+
+
+.dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  /* prevents the strech */
+    margin-bottom: 30px;
+}
+
+
+
+.dropdown-menu{
+    position: absolute;
+    z-index: 9;
+    top:100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 2px  5px 0 rgba(0,0,0,.1);
+    visibility: hidden;
+    transition: visibility 200ms ease-in-out;
+    
+}
+
+.dropdown > .ddb:focus + .dropdown-menu {
+    /* position: relative; */
+    visibility: visible;
+
+}
+
+
+.dropdown-menu a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    
+ 
+}
+
+

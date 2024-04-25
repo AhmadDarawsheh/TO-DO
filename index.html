@@ -16,11 +16,22 @@
                 <input type="text" id="input-todo" placeholder="Add your Text">
                 <button onclick="itemController.add()">Add</button>
             </div>
-            <ul id="list">
-                <!-- <li class="checked">TASK 1</li>
-                <li>TASK 2</li>
-                <li>TASK 3</li> -->
-            </ul>
+            <div class="dropdown">
+                <button class="ddb">Priority</button>
+                <div id="dp" class="dropdown-menu">
+                    <a href="#">High</a>
+                    <a href="#">Medium</a>
+                    <a href="#">Low</a>
+                </div>
+            </div>
+            <div class="todo-list">
+                <ul id="list">
+                    <!-- <li class="checked high">TASK 1</li>
+                    <li>TASK 2</li>
+                    <li>TASK 3</li> -->
+                </ul>
+            </div>
+
         </div>
     </div>
     <script src="script.js"></script>

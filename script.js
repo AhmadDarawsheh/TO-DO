@@ -1,7 +1,13 @@
 const inputBox = document.getElementById("input-todo");
 const list = document.getElementById("list");
-var listItems = document.querySelectorAll("#list li");
+const listItems = document.querySelectorAll("#list li");
+const dropdown = document.getElementById("dp");
 var todoItems = [];
+
+let red = false;
+let orange = false;
+let yellow = false;
+let choosen = false;
 
 listItems.forEach((e) => {
   e.addEventListener("click", () => {
@@ -20,14 +26,32 @@ const task = (desc) => {
   };
 };
 
-//object to control the added tasks 
+//object to control the added tasks
 var itemController = {
   add: () => {
     if (inputBox.value === "") {
       alert("You should add a task!");
-    } else {
+    } else if (choosen && red) {         /////////////////////////////////////////////////////// High priority
       let li = document.createElement("li");
       li.innerHTML = inputBox.value;
+      list.appendChild(li);
+      li.classList.toggle("high");
+      const todoTask = task(inputBox.value);
+      todoItems.push(todoTask);
+
+      let span = document.createElement("span");
+      span.innerHTML = "\u00D7";
+      li.appendChild(span);
+      choosen = false;
+      red = false;
+
+
+
+    } else if (choosen && orange) {       /////////////////////////////////////////////////////// Medium priority
+      console.log("Hi from orange");
+      let li = document.createElement("li");
+      li.innerHTML = inputBox.value;
+      li.classList.toggle("medium");
       list.appendChild(li);
       const todoTask = task(inputBox.value);
       todoItems.push(todoTask);
@@ -35,6 +59,31 @@ var itemController = {
       let span = document.createElement("span");
       span.innerHTML = "\u00D7";
       li.appendChild(span);
+      choosen = false;
+      orange = false;
+
+
+
+
+    } else if (choosen && yellow) {         /////////////////////////////////////////////////////// Low priority
+      console.log("Hi from orange");
+      let li = document.createElement("li");
+      li.innerHTML = inputBox.value;
+      li.classList.toggle("low");
+      list.appendChild(li);
+      const todoTask = task(inputBox.value);
+      todoItems.push(todoTask);
+
+      let span = document.createElement("span");
+      span.innerHTML = "\u00D7";
+      li.appendChild(span);
+      choosen = false;
+      yellow = false;
+
+
+
+    }  else {
+      alert("Please choose priority first.");
     }
     inputBox.value = ""; // Clear the inputfield after adding and element;
   },
@@ -66,7 +115,6 @@ var itemController = {
       });
       console.log("Is removed from the array", clickLi);
       todoItems.pop(clickLi);
-      console.log(this.tasks);
     }
   }),
 
@@ -76,3 +124,30 @@ var itemController = {
 };
 
 itemController.retrive();
+
+dropdown.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
+    choosen = true;
+    if (e.target.textContent == "High") {
+      red = true;
+      green = false;
+      yellow = false;
+    }
+
+    if (e.target.textContent == "Medium") {
+      red = false;
+      orange = true;
+      yellow = false;
+      console.log("ORange")
+    }
+
+    if (e.target.textContent == "Low") {
+      red = false;
+      orange = false;
+      yellow = true;
+    }
+    console.log(e.target.innerHTML);
+    console.log(choosen);
+    console.log("hh ppl");
+  }
+});
