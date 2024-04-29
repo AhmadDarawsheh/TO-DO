@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,15 +14,21 @@
             <h2>TO-DO List <img src="/images/icon.png"></h2>
             <div class="row">
                 <input type="text" id="input-todo" placeholder="Add your Text">
-                <button onclick="itemController.add()">Add</button>
+                <!-- <button onclick="priB()" class="ddb">Priority</button> -->
+                <select name="Priority selection" id="ps">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+
             </div>
-            <div class="dropdown">
-                <button class="ddb">Priority</button>
-                <div id="dp" class="dropdown-menu">
+            <div id="mdd" class="dropdown">
+                <button id="addB">Add</button>
+                <!-- <div id="dp" class="dropdown-menu">
                     <a href="#">High</a>
                     <a href="#">Medium</a>
                     <a href="#">Low</a>
-                </div>
+                </div> -->
             </div>
             <div class="todo-list">
                 <ul id="list">

@@ -37,13 +37,15 @@
 }
 
 .row{
+    
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background:#edeef0;
     border-radius: 30px;
     padding-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    margin-left: auto;
 }
 
 
@@ -59,12 +61,32 @@ input{
 button{
     border: none;
     outline: none;
-    padding: 16px 50px;
+    padding: 12px 50px;
     cursor: pointer;
     background-color:#ff5945 ;
     color: #fff;
     font-size: 16px;
     border-radius: 40px;
+}
+
+select{
+    
+    text-align:inherit;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    background-color:#ff5945 ;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 40px;
+}
+
+
+option {
+    width: 10px;
+    background-color: rgb(115, 115, 115);
+    /* text-align: center; */
 }
 
 
@@ -154,6 +176,10 @@ button{
 }
 
 
+.ddb{
+    padding: 12px 38px;
+}
+
 
 .dropdown-menu{
     position: absolute;
@@ -163,14 +189,19 @@ button{
     border-radius: 10px;
     padding: 12px;
     box-shadow: 0 2px  5px 0 rgba(0,0,0,.1);
-    visibility: hidden;
-    transition: visibility 200ms ease-in-out;
+    transform: translateY(-50px);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
     
 }
 
-.dropdown > .ddb:focus + .dropdown-menu {
+.dropdown.active > .ddb + .dropdown-menu {
     /* position: relative; */
-    visibility: visible;
+    opacity: 1;
+    /* top: 0; */
+    transform: translateY(0);
+    pointer-events: all;
 
 }
 
@@ -185,3 +216,33 @@ button{
 }
 
 
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px 20px;
+    }
+
+    .todo {
+        padding: 20px;
+    }
+
+    .todo-list ul li {
+        font-size: 16px;
+    }
+
+    button {
+        padding: 14px 18px;
+    }
+
+    input {
+        text-align: center;
+    }
+
+    .ddb{
+        padding: 14px 13px;
+    }
+
+    .dropdown{
+        align-items: center;
+    }
+    
+}
