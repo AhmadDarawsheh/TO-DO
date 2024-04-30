@@ -55,7 +55,6 @@ class TodoController {
     if (inputBox.value === "") {
       alert("You should add a task!");
     } else {
-      console.log("Hi from add method");
       this.todoItem = new Todo(inputBox.value);
       this.todoItem.priority = this.priorityState;
       this.todoItem.id = this.idCounter++;
@@ -93,8 +92,6 @@ class TodoController {
         const clickLi = this.todoList.findIndex((todo) => {
           return e.target.parentElement.id == todo.id;
         });
-        console.log(e.target.parentElement.id);
-        console.log("Is removed from the array", this.todoList[clickLi]);
         this.todoList.splice(clickLi, 1);
         this.retrive();
       }
@@ -107,7 +104,6 @@ class TodoController {
 }
 
 const render = () => {
-  console.log("Hi From render fucntion ");
   const controller = new TodoController();
   const addCLicked = document.getElementById("addB");
   addCLicked.addEventListener("click", () => {
