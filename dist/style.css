@@ -114,7 +114,7 @@ option {
     height: 28px;
     border-radius: 50%;
     position: absolute;
-    background-image: url(images/unchecked.png);
+    background-image: url(../images/unchecked.png);
     background-size: cover;
     background-position: center;
     top:12px;
@@ -144,7 +144,7 @@ option {
 }
 
 .todo-list ul li.checked::before{
-    background-image: url(images/checked.png);
+    background-image: url(../images/checked.png);
 }
 
 .todo-list ul li span {

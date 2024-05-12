@@ -1,14 +1,14 @@
-const inputBox = document.getElementById("input-todo");
-const list = document.getElementById("list");
-const listItems = document.querySelectorAll("#list li");
-const dropdown = document.getElementById("dp");
-const ddp = document.getElementById("mdd");
-const selectedElement = document.getElementById("ps");
+const inputBox = document.getElementById("input-todo") as HTMLTextAreaElement;
+const list = document.getElementById("list")!;
+const listItems = document.querySelectorAll("#list li")!;
+const dropdown = document.getElementById("dp")!;
+const ddp = document.getElementById("mdd")!;
+const selectedElement = document.getElementById("ps")as HTMLOptionElement;
 
-const appendTodoItem = (state, value, id) => {
+const appendTodoItem = (state:string, value:string, id:number) :void => {
   let li = document.createElement("li");
   li.innerHTML = value;
-  li.setAttribute("id", id);
+  li.setAttribute("id", `${id}`);
   console.log(li.id);
   list.appendChild(li);
   if (state == "high") {
@@ -31,18 +31,22 @@ const appendTodoItem = (state, value, id) => {
 };
 
 class Todo {
-  constructor(description) {
+    
+    description:string;
+    checked:boolean = false;
+    priority:string = "";
+    id:number= 0;
+  
+  constructor(description:string) {
     this.description = description;
-    this.checked = false;
-    this.priority = "";
-    this.id = 0;
   }
 }
 
 class TodoController {
-  todoList = [];
+  todoList:Todo[] = [];
   priorityState = selectedElement.value; // default value is "high"
   idCounter = 0;
+  todoItem!: Todo;
 
   select = () => {
     selectedElement.addEventListener("change", () => {
@@ -70,15 +74,16 @@ class TodoController {
 
   checked = () => {
     list.addEventListener("click", (e) => {
-      if (e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
+        const target = e.target as HTMLElement
+      if (target?.tagName  === "LI") {
+        target.classList.toggle("checked");
         const clickLi = this.todoList.find((todo) => {
-          return e.target.id == todo.id; // strict equal doesn't work because the id attribute is a string and the id property of the object is a number;
+          return target.id == `${todo.id}`; // strict equal doesn't work because the id attribute is a string and the id property of the object is a number;
         });
-        if (!clickLi.checked) {
-          clickLi.checked = true;
+        if (!clickLi!.checked) {
+          clickLi!.checked = true;
         } else {
-          clickLi.checked = false;
+          clickLi!.checked = false;
         }
         this.retrive();
       }
@@ -87,10 +92,11 @@ class TodoController {
 
   delete = () => {
     list.addEventListener("click", (e) => {
-      if (e.target.tagName === "SPAN") {
-        e.target.parentElement.remove();
+        const target = e.target as HTMLElement
+      if (target.tagName === "SPAN") {
+        target.parentElement!.remove();
         const clickLi = this.todoList.findIndex((todo) => {
-          return e.target.parentElement.id == todo.id;
+          return target.parentElement!.id == `${todo.id}`;
         });
         this.todoList.splice(clickLi, 1);
         this.retrive();
@@ -105,7 +111,7 @@ class TodoController {
 
 const render = () => {
   const controller = new TodoController();
-  const addCLicked = document.getElementById("addB");
+  const addCLicked = document.getElementById("addB")!;
   addCLicked.addEventListener("click", () => {
     controller.add();
   });
